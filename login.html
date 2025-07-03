@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login / Signup Flip Card</title>
+    <script src="https://kit.fontawesome.com/ce344e2789.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="login.css" />
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card" id="card">
+
+            <!-- FRONT: Login -->
+            <div class="face front">
+                <h2>Login</h2>
+                <form>
+                    <form>
+                        <div class="input-group">
+                            <input id="username" type="text" required />
+                            <label>🔑 Enter Username</label>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="password" id="password" required />
+                            <label>🔒 Enter Password</label>
+                        </div>
+
+                        <div class="forgot-link">
+                            <a href="#">Forgot Password?</a>
+                        </div>
+
+                        <button onclick="loginValidate(event)" id="login-btn" type="submit">Login</button>
+                    </form>
+
+                </form>
+
+                <div class="social-login">
+                    <p>or login with</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-google"></i></a>
+
+                    </div>
+                </div>
+
+                <p class="toggle-text">New here? <span onclick="flipCard()">Sign up</span></p>
+            </div>
+
+            <!-- BACK: Signup -->
+            <div class="face back">
+                <h2>Sign Up</h2>
+                <form>
+                    <form>
+                        <div class="input-group">
+                            <input type="text" required />
+                            <label>👤 Full Name</label>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="email" required />
+                            <label>📧 Email Address</label>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="password" required />
+                            <label>🔐 Create Password</label>
+                        </div>
+
+                        <button type="submit">Create Account</button>
+                    </form>
+
+                </form>
+
+                <div class="social-login">
+                    <p>or sign up with</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-google"></i></a>
+                    </div>
+                </div>
+
+                <p class="toggle-text">Already have an account? <span onclick="flipCard()">Login</span></p>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js">
+      
+    </script>
+
+</body>
+
+</html>

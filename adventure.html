@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>🎒 My Bucket List</title>
+  <link rel="stylesheet" href="adv.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <nav>
+    <div class="logo">YatraHub</div>
+    <div class="welcome-message">
+      <p>Welcome, <span id="username">User!</span></p>
+    </div>
+    <button class="Btn">
+      <div class="sign">
+        <svg viewBox="0 0 512 512">
+          <path
+            d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+          </path>
+        </svg>
+      </div>
+
+      <div class="text">Logout</div>
+    </button>
+  </nav>
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>🌍 Create Your Dream Bucket List</h1>
+      <p>Track your dreams, goals & adventures – one item at a time.</p>
+    </div>
+
+    <div class="categories">
+      <button class="category">🏔️ Adventure</button>
+      <button class="category">🎭 Culture</button>
+      <button class="category">🌿 Nature</button>
+      <button class="category">🎯 Personal Goals</button>
+      <button class="category">📸 Experiences</button>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery">
+    <h2>📸 Bucket List Gallery</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="image/bucketlist/paraglide.jpg" alt="Pokhara Paragliding">
+        <p>Paragliding over Pokhara</p>
+      </div>
+      <div class="gallery-item">
+        <img src="image/bucketlist/annapuran.jpg" alt="Annapurna Trek">
+        <p>Annapurna Trekking Trail</p>
+      </div>
+      <div class="gallery-item">
+        <img src="image/bucketlist/everst.jpg" alt="Everest View">
+        <p>Everest View Point</p>
+      </div>
+      <div class="gallery-item">
+        <img src="image/bucketlist/lumbini.jpg" alt="Lumbini Monastery">
+        <p>Lumbini Monastery</p>
+      </div>
+      <div class="gallery-item">
+        <img src="image/bucketlist/chitwan-safari.jpg" alt="Chitwan Safari">
+        <p>Safari in Chitwan</p>
+      </div>
+      <div class="gallery-item">
+        <img src="image/bucketlist/mustnag.jpg" alt="Mustang Stargazing">
+        <p>Stargazing in Mustang</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-form">
+    <div class="form-right">
+      <section class="chat-container">
+        <div class="chat-header">
+          <h2> <i class="fa-solid fa-robot fa-bounce"></i>Bucket List Assistant</h2>
+          <p>Keep track of your bucket list adventures. Simply add or remove items with ease.</p>
+        </div>
+
+        <div class="chat-box" id="chatBox"></div>
+
+        <div class="chat-input-area">
+          <input type="text" id="chatInput" placeholder='Type "Add hiking" or "Remove hiking"' />
+          <button onclick="simulateReply()">Send</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="form-left">
+      <h2>📌 Plan Your Bucket List Goal</h2>
+
+      <form id="advancedForm" class="form-grid">
+        <input type="text" id="goalTitle" placeholder="Your Goal (e.g., Everest Trek)" required>
+
+        <select id="destination" required>
+          <option value="">Select Destination</option>
+          <option value="Pokhara">Pokhara</option>
+          <option value="Everest Base Camp">Everest Base Camp</option>
+          <option value="Lumbini">Lumbini</option>
+          <option value="Mustang">Mustang</option>
+          <option value="Ilam">Ilam</option>
+        </select>
+
+        <input type="date" id="targetDate" required>
+
+        <input type="number" id="budget" placeholder="Budget in NPR" required>
+        <input type="text" id="travelCompanion" placeholder="Travel Companion (e.g., Friends, Family)" required>
+
+        <select id="category" required>
+          <option value="">Choose Category</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Nature">Nature</option>
+          <option value="Cultural">Cultural</option>
+          <option value="Spiritual">Spiritual</option>
+        </select>
+        <input type="text" id="priority" placeholder="Priority (e.g., High, Medium, Low)" required>
+
+        <textarea id="notes" placeholder="Any notes or plans..."></textarea>
+
+
+        <button id="addToListBtn" type="submit">Add to My List</button>
+
+
+      </form>
+
+      <ul id="bucketItemsList"></ul>
+    </div>
+  </section>
+
+
+
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>

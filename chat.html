@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YatraHub - Chat Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="chat.css">
+    <script src="https://kit.fontawesome.com/ce344e2789.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <div class="header">
+        <h1 id="logo">YATRAHUB</h1>
+        <p>🌍 TravelTalk - Explore & Connect</p>
+        <a href="index.html" class="back-home"><i class="fa-solid fa-house"></i></a>
+    </div>
+
+    <div class="dashboard">
+        <div class="sidebar">
+            <h2>Adventure Topics</h2>
+            <ul id="topicList">
+                <li>🏔️ Trekking</li>
+                <li>🏝️ Islands</li>
+                <li>🏕️ Camping</li>
+                <li>🎈 Skydiving</li>
+                <li>📸 Photography</li>
+                <li>🚴 Cycling</li>
+                <li>🧗‍♀️ Mountaineering</li>
+                <li>🌊 Scuba Diving</li>
+                <li>🛶 Kayaking</li>
+                <li>🧗 Rock Climbing</li>
+            </ul>
+        </div>
+
+        <div class="chat-panel">
+            <div id="chatTabs">
+                <!-- New chat box will overwrite here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2025 TravelTalk. Designed with ❤️ for travelers.
+    </div>
+
+    <script>
+        const topics = document.querySelectorAll('#topicList li');
+        const chatTabs = document.getElementById('chatTabs');
+
+        topics.forEach(topic => {
+            topic.addEventListener('click', () => {
+                const topicName = topic.textContent.trim();
+
+                // Clear previous chat content
+                chatTabs.innerHTML = '';
+
+                // Create new chat box
+                const newChatBox = document.createElement('div');
+                newChatBox.classList.add('chat-room');
+                newChatBox.innerHTML = `
+                <h3>${topicName} Chat</h3>
+                <div class="messages"></div>
+                <div class="chat-input">
+                    <input type="text" placeholder="Message about ${topicName}...">
+                    <button><i class='bx bx-send'></i></button>
+                </div>
+            `;
+
+                chatTabs.appendChild(newChatBox);
+
+                const messageContainer = newChatBox.querySelector('.messages');
+                const input = newChatBox.querySelector('input');
+                const button = newChatBox.querySelector('button');
+
+                // Add an initial incoming message
+                const welcomeMsg = document.createElement('div');
+                welcomeMsg.classList.add('msg', 'incoming');
+                welcomeMsg.textContent = `${topicName} fan: Anyone done this?`;
+                messageContainer.appendChild(welcomeMsg);
+
+                // Function to add message
+                function sendMessage() {
+                    const text = input.value.trim();
+                    if (text !== '') {
+                        const userMsg = document.createElement('div');
+                        userMsg.classList.add('msg', 'outgoing');
+                        userMsg.textContent = `You: ${text}`;
+                        messageContainer.appendChild(userMsg);
+                        input.value = '';
+                        messageContainer.scrollTop = messageContainer.scrollHeight;
+                    }
+                }
+
+                // Button click to send
+                button.addEventListener('click', sendMessage);
+
+                // Enter key to send
+                input.addEventListener('keydown', e => {
+                    if (e.key === 'Enter') sendMessage();
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

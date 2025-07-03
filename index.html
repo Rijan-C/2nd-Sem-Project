@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/ce344e2789.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+
+    <!-- header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <h1 class="logo">YatraHub</h1>
+            </div>
+
+            <div class="links">
+                <ul id="sidemenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="adventure.html">Adventures</a></li>
+                    <li><a href="chat.html">Chat</a></li>
+                    <li><a href="#more">More</a></li>
+                    <li><i class='bx bx-x' onclick="closemenu()"></i></li>
+                </ul>
+                <i class='bx bx-menu' onclick="openmenu()"></i>
+            </div>
+
+            <div class="login">
+                <a class="btn" href="login.html">Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- home -->
+
+
+
+    <section class="home-section">
+        <div class="home-container">
+            <h1 class="heading">Your Next Adventure Awaits.</h1>
+            <ul class="home-list">
+                <li><i class='bx bx-check'></i>Set Goals</li>
+                <li><i class='bx bx-check'></i>Plan Trips</li>
+                <li><i class='bx bx-check'></i>Build a Community</li>
+            </ul>
+
+            <a href="#" id="bkt-btn" class="btn"><i class='bx bxs-hand-right'></i>Create my bucket list</a>
+            <div class="home-login">
+                <a href="#" class="btn">Login</a>
+            </div>
+        </div>
+
+        <div class="home-image">
+            <img src="image/traveling-concept-with-landmarks.jpg" alt="Travel Adventure" />
+        </div>
+
+    </section>
+
+    <div class="custom-shape-divider-bottom-1748269054">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+                d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+                opacity=".25" class="shape-fill"></path>
+            <path
+                d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+                opacity=".5" class="shape-fill"></path>
+            <path
+                d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+                class="shape-fill"></path>
+        </svg>
+    </div>
+    <!-- chat  -->
+
+
+    <section class="chat">
+        <h1 class="heading"> 💬 Connect With Fellow Adventurers</h1>
+        <div class="chat-content">
+            <div class="txt">
+                <div data-aos="fade-right" class="chat-left">
+                    <img src="image/7495.jpg" alt="">
+                </div>
+                <div data-aos="fade-left" class="chat-right">
+                    <h2>Join the Conversation</h2>
+                    <p>💬 "Need tips for your next bucket list trip? Want to share your wildest adventure? Our
+                        interactive chat
+                        connects you with like-minded explorers who are just as passionate as you!"
+                    </p>
+
+                    <a class="btn" href="chat.html">🚀 Start Chatting Now</a>
+
+
+
+
+                    <div class="chat-preview">
+                        <div class="live-counter">
+                            🟢 <span id="userCount">0</span> adventurers online
+                        </div>
+                        <div class="bubble">A: 🌍 Just reached Everest Basecamp!</div>
+                        <div class="bubble">B: 🔥 Who's down for a desert trek?</div>
+                        <div class="bubble">C: 🚴‍♂️ Cycling through the Alps is insane!</div>
+                        <div class="bubble">D: 🌌 Stargazing in Iceland 😍</div>
+                        <div class="bubble">E: 🏕️ Camping under the stars in the Sahara!</div>
+                        <div class="send">
+                            <button>Send</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="items">
+            <h1 class="heading">🌟 Chat Features</h1>
+            <div class="grid">
+                <div data-aos="zoom-in" class="feature-card">
+                    <span>💬</span>
+                    <h3>Real-Time Messaging</h3>
+                    <p>Instantly connect with other adventurers on the go.</p>
+                </div>
+                <div data-aos="zoom-in" class="feature-card">
+                    <span>🗂</span>
+                    <h3>Topic Channels</h3>
+                    <p>Join chats focused on specific adventures and locations.</p>
+                </div>
+                <div data-aos="zoom-in" class="feature-card">
+                    <span>🔒</span>
+                    <h3>Private & Secure</h3>
+                    <p>Your conversations are encrypted and protected.</p>
+                </div>
+                <div data-aos="zoom-in" class="feature-card">
+                    <span>🌐</span>
+                    <h3>Global Reach</h3>
+                    <p>Talk to fellow explorers from across the globe.</p>
+                </div>
+                <div data-aos="zoom-in" class="feature-card">
+                    <span>🎯</span>
+                    <h3>Plan Together</h3>
+                    <p>Coordinate trips and share itineraries live.</p>
+                </div>
+                <div data-aos="zoom-in" class="feature-card">
+                    <span>🔔</span>
+                    <h3>Instant Notifications</h3>
+                    <p>Stay updated with real-time message alerts.</p>
+                </div>
+                <div data-aos="zoom-in" class="feature-card">
+                    <span>📸</span>
+                    <h3>Share Memories</h3>
+                    <p>Post photos and stories from your adventures.</p>
+                </div>
+                <div data-aos="zoom-in" class="feature-card">
+                    <span>🤝</span>
+                    <h3>Meet New Friends</h3>
+                    <p>Connect with fellow adventurers and share experiences.</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- about -->
+
+
+
+    <section id="more" class="more">
+
+        <h1 class="heading">Why Choose <span>MyBucket?</span></h1>
+
+        <div class="more-content">
+            <section class="offers">
+                <div data-aos="fade-right" class="offer-card">
+                    <i class="fa-solid fa-bucket"></i>
+                    <h3>Create Your Bucket List</h3>
+                    <p>Set meaningful personal goals and dreams you’ve always wanted to achieve.</p>
+                </div>
+                <div data-aos="fade-right" class="offer-card">
+                    <i class="fa-solid fa-comments"></i>
+                    <h3>Interactive Chat System</h3>
+                    <p>Just type to add or update your goals. It's fast, fun, and easy.</p>
+                </div>
+                <div data-aos="fade-right" class="offer-card">
+                    <i class="fa-solid fa-trophy"></i>
+                    <h3>Track & Celebrate Progress</h3>
+                    <p>Stay motivated with real-time progress stats and celebrate your wins.</p>
+                </div>
+            </section>
+
+
+            <section data-aos="fade-left" class="chat-container">
+                <div class="chat-header">
+                    <h2><i class="fa-solid fa-robot fa-bounce"></i> Bucket List Assistant</h2>
+                    <p>Keep track of your bucket list adventures. Simply add or remove items with ease.</p>
+                </div>
+
+                <div class="chat-box" id="chatBox"></div>
+
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder='Type "Add hiking" or "Remove hiking"' />
+                    <button onclick="simulateReply()">Send</button>
+                </div>
+            </section>
+
+
+        </div>
+
+
+
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h2>MyBucket</h2>
+                <p>Chase dreams, tick off adventures, and connect with fellow explorers.</p>
+                <div class="footer-social">
+                    <h3>Connect</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <h3>Quick Links</h3>
+            <p> </p>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Adventures</a></li>
+                <li><a href="#">Chat</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div class="contact-us">
+            <h3>Contact Us</h3>
+            <p>If you have any questions or feedback, feel free to reach out!</p><br>
+            <p><i class="fa-solid fa-phone"></i>+977 9847776887</p>
+            <p> <a href="mailto:chudalrijan@gmail.com"><i class="fa-solid fa-envelope"></i>chudalrijan@gmail.com</a></p>
+            <p><i class="fa-solid fa-map-marker-alt"></i>Kathmandu, Nepal</p>
+        </div>
+
+
+    </footer>
+
+    <div class="footer-bottom">
+        <p>© 2025 My Bucket. All rights reserved.</p>
+    </div>
+
+
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script>
+        AOS.init({
+            duration: 2000,
+            once: false,
+            offset: 100
+        });
+    </script>
+</body>
+
+
+
+</html>
