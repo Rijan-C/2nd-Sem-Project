@@ -7,20 +7,26 @@
     <title>YatraHub - Chat Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <script src="https://kit.fontawesome.com/ce344e2789.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@4.6.2/dist/index.js"></script>
+    <link rel="stylesheet" href="chat.css">
 
-</head>
 
 <body>
-
     <div class="header">
-        <h1 id="logo">YATRAHUB</h1>
-        <p>🌍 TravelTalk - Explore & Connect</p>
-        <a href="index.html" class="back-home"><i class="fa-solid fa-house"></i></a>
+        <div>
+            <h1 id="logo">YatraHub</h1>
+        </div>
+        <div>
+            <p>🌍 TravelTalk - Explore & Connect</p>
+        </div>
+        <div>
+            <a href="index.html" class="back-home"><i class="fa-solid fa-house"></i></a>
+        </div>
     </div>
 
-    <div class="dashboard">
+    <div class="dashboard-container">
         <div class="sidebar">
             <h2>Adventure Topics</h2>
             <ul id="topicList">
@@ -34,12 +40,106 @@
                 <li>🌊 Scuba Diving</li>
                 <li>🛶 Kayaking</li>
                 <li>🧗 Rock Climbing</li>
+                <li>Others</li>
+
             </ul>
         </div>
 
-        <div class="chat-panel">
-            <div id="chatTabs">
-                <!-- New chat box will overwrite here -->
+        <div class="main-content">
+            <div class="chat-panel">
+                <div id="chatTabs">
+                    <!-- Default welcome message when no chat is selected -->
+                    <div class="welcome-message">
+                        <h3>Welcome to TravelTalk!</h3>
+                        <p>Select a topic from the sidebar to start chatting with fellow travelers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-panel">
+                <div class="user-profile">
+                    <div class="avatar pulse">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <h3>Travel Explorer</h3>
+                        <p>Member since 2024</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Your Travel Score</h3>
+                    <p>87/100</p>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 87%;"></div>
+                        </div>
+                        <div class="progress-labels">
+                            <span>Beginner</span>
+                            <span>Expert</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Countries Visited</h3>
+                        <p>12</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Adventures Completed</h3>
+                        <p>24</p>
+                    </div>
+                </div>
+
+                <h2>Recent Activity</h2>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <div class="activity-details">
+                        <h4>Shared trekking experience</h4>
+                        <p>2 hours ago in Trekking chat</p>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="activity-details">
+                        <h4>Uploaded travel photos</h4>
+                        <p>Yesterday in Photography chat</p>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="activity-details">
+                        <h4>Planned new trip to Bali</h4>
+                        <p>3 days ago</p>
+                    </div>
+                </div>
+
+                <div class="upcoming-trips">
+                    <h2>Upcoming Trips</h2>
+                    <div class="trip-card">
+                        <h4>Scuba Diving Certification</h4>
+                        <p><i class="fas fa-calendar-alt"></i> Starts in 2 weeks</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Maldives</p>
+                    </div>
+                    <div class="trip-card">
+                        <h4>Mountain Biking Adventure</h4>
+                        <p><i class="fas fa-calendar-alt"></i> Next month</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Swiss Alps</p>
+                    </div>
+                    <div class="trip-card">
+                        <h4>Mountain Biking Adventure</h4>
+                        <p><i class="fas fa-calendar-alt"></i> Next month</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Swiss Alps</p>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -47,66 +147,246 @@
     <div class="footer">
         © 2025 TravelTalk. Designed with ❤️ for travelers.
     </div>
+<script>
+    const topics = document.querySelectorAll('#topicList li');
+    const chatTabs = document.getElementById('chatTabs');
 
-    <script>
-        const topics = document.querySelectorAll('#topicList li');
-        const chatTabs = document.getElementById('chatTabs');
+    topics.forEach(topic => {
+        topic.addEventListener('click', () => {
+            // Add click animation
+            topic.style.animation = 'none';
+            setTimeout(() => {
+                topic.style.animation = 'pulse 0.5s';
+            }, 10);
 
-        topics.forEach(topic => {
-            topic.addEventListener('click', () => {
-                const topicName = topic.textContent.trim();
-
-                // Clear previous chat content
-                chatTabs.innerHTML = '';
-
-                // Create new chat box
-                const newChatBox = document.createElement('div');
-                newChatBox.classList.add('chat-room');
-                newChatBox.innerHTML = `
-                <h3>${topicName} Chat</h3>
-                <div class="messages"></div>
-                <div class="chat-input">
-                    <input type="text" placeholder="Message about ${topicName}...">
-                    <button><i class='bx bx-send'></i></button>
-                </div>
-            `;
-
-                chatTabs.appendChild(newChatBox);
-
-                const messageContainer = newChatBox.querySelector('.messages');
-                const input = newChatBox.querySelector('input');
-                const button = newChatBox.querySelector('button');
-
-                // Add an initial incoming message
-                const welcomeMsg = document.createElement('div');
-                welcomeMsg.classList.add('msg', 'incoming');
-                welcomeMsg.textContent = `${topicName} fan: Anyone done this?`;
-                messageContainer.appendChild(welcomeMsg);
-
-                // Function to add message
-                function sendMessage() {
-                    const text = input.value.trim();
-                    if (text !== '') {
-                        const userMsg = document.createElement('div');
-                        userMsg.classList.add('msg', 'outgoing');
-                        userMsg.textContent = `You: ${text}`;
-                        messageContainer.appendChild(userMsg);
-                        input.value = '';
-                        messageContainer.scrollTop = messageContainer.scrollHeight;
-                    }
-                }
-
-                // Button click to send
-                button.addEventListener('click', sendMessage);
-
-                // Enter key to send
-                input.addEventListener('keydown', e => {
-                    if (e.key === 'Enter') sendMessage();
-                });
-            });
+            openChatRoom(topic.textContent.trim());
         });
-    </script>
+    });
 
+    // Auto-open chat from URL param if available
+    window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const topic = urlParams.get('topic');
+        if (topic) {
+            openChatRoom(topic);
+        }
+
+        // Animate progress bar on load
+        const progressBar = document.querySelector('.progress');
+        progressBar.style.width = '0';
+        setTimeout(() => {
+            progressBar.style.width = '87%';
+        }, 300);
+    };
+
+    function openChatRoom(topicName) {
+        chatTabs.innerHTML = '';
+
+        const newChatBox = document.createElement('div');
+        newChatBox.classList.add('chat-room');
+        newChatBox.innerHTML = `
+            <h3>${topicName} Chat</h3>
+            <div class="messages">
+                <div class="msg incoming">${topicName} fan: Anyone done this recently?</div>
+                <div class="msg incoming">TravelExpert: I just returned from a ${topicName} trip last week!</div>
+            </div>
+            <div class="chat-input">
+                <textarea placeholder="Message about ${topicName}..." rows="1"></textarea>
+                <label class="emoji-btn" title="Insert Emoji">
+                    😊
+                </label>
+                <label class="image-btn" title="Upload Image">
+                    📷
+                    <input type="file" accept="image/*" id="imageInput" hidden />
+                </label>
+                <button><i class='bx bx-send'></i></button>
+            </div>
+        `;
+        chatTabs.appendChild(newChatBox);
+
+        const messageContainer = newChatBox.querySelector('.messages');
+        const textarea = newChatBox.querySelector('textarea');
+        const button = newChatBox.querySelector('button');
+        const imageInput = newChatBox.querySelector('#imageInput');
+        const emojiBtn = newChatBox.querySelector('.emoji-btn');
+
+        function sendMessage() {
+            const text = textarea.value.trim();
+            if (text !== '') {
+                const userMsg = document.createElement('div');
+                userMsg.classList.add('msg', 'outgoing');
+                userMsg.textContent = `You: ${text}`;
+                messageContainer.appendChild(userMsg);
+                textarea.value = '';
+                messageContainer.scrollTop = messageContainer.scrollHeight;
+
+                // Simulate response
+                simulateResponse();
+            }
+        }
+
+        function sendImage(file) {
+            if (!file.type.match('image.*')) {
+                alert('Please select an image file');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.src = e.target.result;
+                
+                img.onload = function() {
+                    // Calculate the new dimensions while maintaining aspect ratio
+                    const maxWidth = 300;
+                    const maxHeight = 300;
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > height) {
+                        if (width > maxWidth) {
+                            height *= maxWidth / width;
+                            width = maxWidth;
+                        }
+                    } else {
+                        if (height > maxHeight) {
+                            width *= maxHeight / height;
+                            height = maxHeight;
+                        }
+                    }
+
+                    const userMsg = document.createElement('div');
+                    userMsg.classList.add('msg', 'outgoing');
+                    
+                    const imgContainer = document.createElement('div');
+                    imgContainer.classList.add('image-container');
+                    
+                    const displayedImg = document.createElement('img');
+                    displayedImg.src = e.target.result;
+                    displayedImg.alt = 'Uploaded image';
+                    displayedImg.style.width = `${width}px`;
+                    displayedImg.style.height = `${height}px`;
+                    
+                    imgContainer.appendChild(displayedImg);
+                    userMsg.appendChild(document.createTextNode('You: '));
+                    userMsg.appendChild(imgContainer);
+                    messageContainer.appendChild(userMsg);
+                    messageContainer.scrollTop = messageContainer.scrollHeight;
+
+                    // Simulate response
+                    simulateResponse();
+                };
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function simulateResponse() {
+            // Add typing indicator
+            const typingIndicator = document.createElement('div');
+            typingIndicator.classList.add('msg', 'incoming');
+            typingIndicator.innerHTML = '<i>Traveler is typing...</i>';
+            messageContainer.appendChild(typingIndicator);
+            messageContainer.scrollTop = messageContainer.scrollHeight;
+
+            // Simulate response after a short delay
+            setTimeout(() => {
+                messageContainer.removeChild(typingIndicator);
+
+                const responses = [
+                    "That sounds amazing!",
+                    "I've done that before - great choice!",
+                    "Would love to hear more details about your experience.",
+                    "Has anyone tried this in different seasons?",
+                    "Pro tip: bring extra water and snacks!",
+                    "Nice picture! When was this taken?",
+                    "😊 That looks fantastic!",
+                    "I remember visiting that place too! 🌄"
+                ];
+                
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                const botMsg = document.createElement('div');
+                botMsg.classList.add('msg', 'incoming');
+                
+                // Randomly decide to send an image response
+                if (Math.random() > 0.7) {
+                    const imgContainer = document.createElement('div');
+                    imgContainer.classList.add('image-container');
+                    
+                    const img = document.createElement('img');
+                    // Use placeholder image service with topic-related images
+                    img.src = `https://source.unsplash.com/random/300x200/?${encodeURIComponent(topicName)},travel`;
+                    img.alt = 'Travel photo';
+                    
+                    // Set dimensions for the response image
+                    img.style.maxWidth = '300px';
+                    img.style.maxHeight = '200px';
+                    img.style.width = 'auto';
+                    img.style.height = 'auto';
+                    
+                    imgContainer.appendChild(img);
+                    botMsg.appendChild(document.createTextNode('Traveler: '));
+                    botMsg.appendChild(imgContainer);
+                    botMsg.appendChild(document.createElement('br'));
+                    botMsg.appendChild(document.createTextNode(randomResponse));
+                } else {
+                    botMsg.textContent = `Traveler: ${randomResponse}`;
+                }
+                
+                messageContainer.appendChild(botMsg);
+                messageContainer.scrollTop = messageContainer.scrollHeight;
+            }, 1500 + Math.random() * 2000);
+        }
+
+        button.addEventListener('click', sendMessage);
+        textarea.addEventListener('keydown', e => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Handle image upload
+        imageInput.addEventListener('change', function(e) {
+            if (e.target.files && e.target.files[0]) {
+                sendImage(e.target.files[0]);
+                // Reset the input so the same file can be uploaded again if needed
+                e.target.value = '';
+            }
+        });
+
+        // Auto-resize textarea as user types
+        textarea.addEventListener('input', function () {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+
+        // Initialize emoji picker for this chat room
+        const picker = new EmojiButton({
+            position: 'top-start',
+            emojiSize: '20px',
+            emojisPerRow: 8,
+            rows: 5,
+            theme: 'light'
+        });
+
+        picker.on('emoji', selection => {
+            textarea.value += selection.emoji;
+            textarea.focus();
+        });
+
+        emojiBtn.addEventListener('click', () => picker.togglePicker(emojiBtn));
+
+        // Focus the textarea when chat opens
+        setTimeout(() => {
+            textarea.focus();
+        }, 100);
+    }
+
+    // Add hover effects to all interactive elements
+    document.querySelectorAll('button, [role="button"], .stat-card, .activity-item, .trip-card').forEach(el => {
+        el.style.transition = 'var(--transition)';
+    });
+</script>
 </body>
 
 </html>

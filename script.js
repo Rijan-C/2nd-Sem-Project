@@ -1,168 +1,159 @@
+// Mobile menu toggle
 function openmenu() {
-  sidemenu.style.right = "0";
+    document.getElementById("sidemenu").classList.add("active");
 }
+
 function closemenu() {
-  sidemenu.style.right = "-200px";
+    document.getElementById("sidemenu").classList.remove("active");
 }
 
+// Simulate login status (replace with real logic if using auth)
+let isLoggedIn = false;
 
-// chat bot
-const chatBox = document.getElementById("chatBox");
-const chatInput = document.getElementById("chatInput");
-let bucketList = [];
-
-function simulateReply() {
-  const input = chatInput.value.trim();
-
-  if (input === "") return;
-
-  // Show user input
-  appendMessage("user", input);
-
-  const lowerInput = input.toLowerCase();
-
-  if (lowerInput.startsWith("add ")) {
-    const item = input.slice(4).trim();
-    if (item && !bucketList.includes(item)) {
-      bucketList.push(item);
-      appendMessage("bot", `✅ Added "${item}" to your bucket list.`);
-    } else {
-      appendMessage("bot", `⚠️ "${item}" is already on the list or invalid.`);
-    }
-  } else if (lowerInput.startsWith("remove ")) {
-    const item = input.slice(7).trim();
-    if (bucketList.includes(item)) {
-      bucketList = bucketList.filter(i => i !== item);
-      appendMessage("bot", `❌ Removed "${item}" from your list.`);
-    } else {
-      appendMessage("bot", `🔍 Couldn't find "${item}" in your list.`);
-    }
-  } else if (lowerInput === "list" || lowerInput === "show list") {
-    if (bucketList.length === 0) {
-      appendMessage("bot", "🗒️ Your bucket list is empty.");
-    } else {
-      appendMessage("bot", `📋 Your bucket list:<br>• ${bucketList.join("<br>• ")}`);
-    }
-  } else {
-    appendMessage("bot", '🤖 Sorry, I understand "Add", "Remove", or "Show List".');
-  }
-
-  chatInput.value = "";
-}
-
-function appendMessage(sender, text) {
-  const msg = document.createElement("div");
-  msg.className = `msg ${sender}`;
-  msg.innerHTML = `<span>${sender === "user" ? "🧍 You" : "🤖 Assistant"}:</span> ${text}`;
-  chatBox.appendChild(msg);
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-
-
-
-// CHAT.HTML
-const chatForm = document.getElementById('chatForm');
-const messageInput = document.getElementById('messageInput');
-const chatMessages = document.getElementById('chatMessages');
-
-chatForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const message = messageInput.value.trim();
-  if (!message) return;
-
-  // Add user's outgoing message
-  appendMessage(message, 'outgoing');
-  messageInput.value = '';
-
-  setTimeout(() => {
-    const reply = generateBotReply(message);
-    appendMessage(reply, 'incoming');
-  }, 1000);
+// Intercept link clicks
+document.querySelectorAll('.links a').forEach(link => {
+    link.addEventListener('click', function (e) {
+        if (!isLoggedIn) {
+            e.preventDefault(); // Prevent default navigation
+            window.location.href = 'login.html'; // Redirect to login
+        }
+    });
 });
 
-function appendMessage(text, type) {
-  const msg = document.createElement('div');
-  msg.classList.add('msg', type);
-  msg.textContent = type === 'incoming' ? `Bot: ${text}` : `You: ${text}`;
-  chatMessages.appendChild(msg);
+// Background Slideshow
+document.addEventListener('DOMContentLoaded', function () {
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
 
-  chatMessages.scrollTop = chatMessages.scrollHeight;
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    // Change slide every 4 seconds
+    setInterval(nextSlide, 4000);
+
+    // Quick action button animations
+    const actionButtons = document.querySelectorAll('.action-btn');
+    actionButtons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            button.style.transform = 'translateY(-3px)';
+            button.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+        });
+
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'translateY(0)';
+            button.style.boxShadow = 'none';
+        });
+    });
+
+
+});
+
+
+// Simulate chat bot replies
+function simulateReply() {
+    const input = document.getElementById('chatInput');
+    const chatBox = document.getElementById('chatBox');
+
+    if (input.value.trim() === '') return;
+
+    // Add user message
+    const userMsg = document.createElement('div');
+    userMsg.className = 'bubble';
+    userMsg.textContent = `You: ${input.value}`;
+    chatBox.appendChild(userMsg);
+
+    // Generate bot response
+    let botResponse = '';
+    if (input.value.toLowerCase().includes('add')) {
+        const item = input.value.replace('add', '').trim() || 'item';
+        botResponse = `Added "${item}" to your bucket list! 🎉`;
+    } else if (input.value.toLowerCase().includes('remove')) {
+        const item = input.value.replace('remove', '').trim() || 'item';
+        botResponse = `Removed "${item}" from your bucket list. ✅`;
+    } else {
+        botResponse = "I can help you manage your bucket list! Try saying 'Add hiking' or 'Remove skydiving'";
+    }
+
+    // Add bot message after delay
+    setTimeout(() => {
+        const botMsg = document.createElement('div');
+        botMsg.className = 'bubble';
+        botMsg.textContent = `Bot: ${botResponse}`;
+        chatBox.appendChild(botMsg);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }, 800);
+
+    input.value = '';
+    chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-
-function generateBotReply(userMessage) {
-  const replies = [
-    "That sounds awesome!",
-    "Bucket list worthy! 🌟",
-    "I've always wanted to try that too!",
-    "Tell me more!",
-    "Sounds adventurous! 🏞️",
-    "🔥 Love that idea!"
-
-  ];
-  return replies[Math.floor(Math.random() * replies.length)];
-}
+// Allow Enter key to send message
+document.getElementById('chatInput').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        simulateReply();
+    }
+});
 
 
 
 
 
-// login flip card js
-function flipCard() {
-  document.getElementById('card').classList.toggle('flipped');
-}
+// Auth and Dashboard functionality
+document.addEventListener('DOMContentLoaded', function () {
+    // Check if user is logged in (you would replace this with actual auth check)
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const username = localStorage.getItem('username') || 'Adventurer';
 
-// login validation 
-function loginValidate(e) {
-  e.preventDefault();
-  let username = document.getElementById('username').value;
-  let password = document.getElementById('password').value;
-  if (username == "admin" && password == "admin") {
-    alert("Hi, You're Logged in!!");
-    window.location.href = "chat.html";
-  }
-  else {
-    alert("Invalid username or password");
-  }
-}
+    const authSection = document.getElementById('authSection');
+    const dashboardDropdown = document.getElementById('dashboardDropdown');
 
-// bucket-list
-function showInfo(destination) {
-  alert("You clicked: " + destination);
-}
-
-
-// chat box
-
-const topics = document.querySelectorAll('#topicList li');
-const chatTabs = document.getElementById('chatTabs');
-
-topics.forEach(topic => {
-  topic.addEventListener('click', () => {
-    const topicName = topic.textContent.trim();
-
-    // Clear previous chat content
-    chatTabs.innerHTML = '';
-
-    // Create new chat box
-    const newChatBox = document.createElement('div');
-    newChatBox.classList.add('chat-room');
-    newChatBox.innerHTML = `
-          <h3>${topicName} Chat</h3>
-          <div class="messages">
-            <div class="msg incoming">${topicName} fan: Anyone done this?</div>
-          </div>
-          <div class="chat-input">
-            <input type="text" placeholder="Message about ${topicName}...">
-            <button><i class='bx bx-send'></i></button>
-          </div>
+    if (isLoggedIn) {
+        // Show user dashboard
+        authSection.innerHTML = `
+            <div class="user-info" id="userInfo">
+                <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(username)}&background=random" 
+                     alt="${username}" class="user-avatar">
+                <span class="user-name">${username}</span>
+                <i class='bx bx-chevron-down'></i>
+            </div>
         `;
 
-    chatTabs.appendChild(newChatBox);
-  });
+        // Set username in dropdown
+        document.getElementById('usernameDisplay').textContent = username;
+
+        // Toggle dashboard dropdown
+        document.getElementById('userInfo').addEventListener('click', function (e) {
+            e.stopPropagation();
+            dashboardDropdown.classList.toggle('show');
+        });
+
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function (e) {
+            e.preventDefault();
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('username');
+            window.location.href = 'index.html';
+        });
+    } else {
+        // Show login button
+        authSection.innerHTML = `<a class="btn" href="login.html">Login</a>`;
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function () {
+        dashboardDropdown.classList.remove('show');
+    });
 });
 
-// adventure.js
-
+// For login page (login.html) - you would add this to your login page's JS
+function handleLogin() {
+    const username = document.getElementById('username').value;
+    if (username) {
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('username', username);
+        window.location.href = 'index.html';
+    }
+}

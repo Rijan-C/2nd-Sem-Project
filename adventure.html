@@ -3,142 +3,1005 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>🎒 My Bucket List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌍 My Adventure Bucket List</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="adv.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
 </head>
 
 <body>
-  <nav>
-    <div class="logo">YatraHub</div>
-    <div class="welcome-message">
-      <p>Welcome, <span id="username">User!</span></p>
-    </div>
-    <button class="Btn">
-      <div class="sign">
-        <svg viewBox="0 0 512 512">
-          <path
-            d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
-          </path>
-        </svg>
+  <div class="container">
+    <header>
+      <h1>YatraHub Bucket List</h1>
+      <p class="subtitle">Track your dreams and make them happen</p>
+      <nav>
+        <a href="chat.html" class="chat-link"><i class="fas fa-comments"></i> Adventure Chat</a>
+        <a href="#" class="gallery-link" id="galleryLink"><i class="fas fa-images"></i> Adventure Gallery</a>
+        <a href="#" class="inspiration-link" id="inspirationLink"><i class="fas fa-lightbulb"></i> Get Inspired</a>
+      </nav>
+    </header>
+
+    <div class="main-content">
+      <div class="form-container hidden" id="formContainer">
+        <div class="form-group">
+          <!-- Adventure Title -->
+          <div class="input-group">
+            <label for="itemTitle"><i class="fas fa-bullseye"></i> Adventure Title</label>
+            <input type="text" id="itemTitle" placeholder="What's your adventure? (e.g. Hike Machu Picchu)" />
+          </div>
+
+          <!-- Category Dropdown -->
+          <div class="input-group">
+            <label for="itemCategory"><i class="fas fa-tag"></i> Category</label>
+            <select id="itemCategory">
+              <option value="">Select Category</option>
+              <option value="Travel">Travel</option>
+              <option value="Adventure">Adventure</option>
+              <option value="Career">Career</option>
+              <option value="Personal">Personal</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <!-- Location -->
+          <div class="input-group">
+            <label for="itemLocation"><i class="fas fa-map-marker-alt"></i> Location</label>
+            <input type="text" id="itemLocation" placeholder="Where? (e.g. Peru)" />
+          </div>
+
+          <!-- Budget Input -->
+          <div class="input-group">
+            <label for="itemBudget"><i class="fas fa-wallet"></i> Budget</label>
+            <div class="input-with-symbol">
+              <span class="currency-symbol">$</span>
+              <input type="text" id="itemBudget" placeholder="2000" inputmode="numeric" pattern="[0-9,]*" />
+            </div>
+          </div>
+
+          <!-- Days/Duration -->
+          <div class="input-group">
+            <label for="itemDays"><i class="fas fa-calendar-day"></i> Duration</label>
+            <input type="number" id="itemDays" placeholder="Days needed (e.g. 10)" min="1" />
+          </div>
+
+          <!-- Priority -->
+          <div class="input-group">
+            <label for="itemPriority"><i class="fas fa-star"></i> Priority</label>
+            <select id="itemPriority">
+              <option value="">Priority Level</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+              <option value="Urgent">Urgent</option>
+            </select>
+          </div>
+
+          <!-- Notes (Optional) -->
+          <div class="input-group">
+            <label for="itemNotes"><i class="fas fa-edit"></i> Notes</label>
+            <textarea id="itemNotes" placeholder="Additional notes..."></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button class="btn-primary" id="addItemBtn">
+            <i class="fas fa-plus"></i> Add Adventure
+          </button>
+        </div>
       </div>
 
-      <div class="text">Logout</div>
+      <div class="filter-bar">
+        <div class="filter-group">
+          <i class="fas fa-filter"></i>
+          <select id="filterCategory" class="filter-select">
+            <option value="">All Categories</option>
+            <option value="Travel">Travel</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Career">Career</option>
+            <option value="Personal">Personal</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <i class="fas fa-check-circle"></i>
+          <select id="filterStatus" class="filter-select">
+            <option value="">All Statuses</option>
+            <option value="active">Active</option>
+            <option value="achieved">Achieved</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <i class="fas fa-sort"></i>
+          <select id="sortBy" class="filter-select">
+            <option value="dateAdded">Sort by: Date Added</option>
+            <option value="priority">Sort by: Priority</option>
+            <option value="budget">Sort by: Budget</option>
+          </select>
+        </div>
+
+        <button class="reset-btn" id="resetFiltersBtn">
+          <i class="fas fa-sync-alt"></i> Reset
+        </button>
+      </div>
+
+      <div class="stats">
+        <div class="stat-card">
+          <h3 id="totalCount">0</h3>
+          <p>Total Adventures</p>
+        </div>
+        <div class="stat-card">
+          <h3 id="achievedCount">0</h3>
+          <p>Completed</p>
+        </div>
+        <div class="stat-card">
+          <h3 id="activeCount">0</h3>
+          <p>Active</p>
+        </div>
+        <div class="stat-card">
+          <h3 id="totalBudget">$0</h3>
+          <p>Total Budget</p>
+        </div>
+      </div>
+
+      <div class="bucket-list" id="bucketListContainer">
+        <!-- Items will be dynamically inserted here -->
+        <div class="empty-state">
+          <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="Empty bucket list">
+          <h3>Your adventure bucket list is empty</h3>
+          <p>Start by adding your first adventure!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="gallery-section" id="gallerySection">
+      <h2 class="section-title"><i class="fas fa-images"></i> Adventure Gallery</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            alt="Mountain Adventure">
+          <div class="gallery-caption">
+            <h4>Mountain Trekking</h4>
+            <p>Completed: June 2022</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            alt="Desert Safari">
+          <div class="gallery-caption">
+            <h4>Desert Safari</h4>
+            <p>Completed: January 2023</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            alt="Beach Vacation">
+          <div class="gallery-caption">
+            <h4>Tropical Getaway</h4>
+            <p>Completed: August 2021</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1433838552652-f9a46b332c40?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            alt="City Exploration">
+          <div class="gallery-caption">
+            <h4>City Exploration</h4>
+            <p>Completed: May 2022</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inspiration Section -->
+    <div class="inspiration-section" id="inspirationSection">
+      <h2 class="section-title"><i class="fas fa-lightbulb"></i> Get Inspired</h2>
+
+      <div class="quote-card">
+        <p class="quote-text">"The biggest adventure you can take is to live the life of your dreams."</p>
+        <p class="quote-author">— Oprah Winfrey</p>
+      </div>
+
+      <div class="inspiration-grid">
+        <div class="inspiration-card">
+          <div class="inspiration-image">
+            <img
+              src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              alt="Popular Adventures">
+          </div>
+          <div class="inspiration-content">
+            <h3 class="inspiration-title">Top 10 Adventure Destinations</h3>
+            <p class="inspiration-description">Discover the most thrilling places to visit around the world for
+              adrenaline seekers.</p>
+            <a href="#" class="inspiration-link">Explore More →</a>
+          </div>
+        </div>
+
+        <div class="inspiration-card">
+          <div class="inspiration-image">
+            <img
+              src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              alt="Budget Travel">
+          </div>
+          <div class="inspiration-content">
+            <h3 class="inspiration-title">Adventure on a Budget</h3>
+            <p class="inspiration-description">Learn how to experience amazing adventures without breaking the bank.</p>
+            <a href="#" class="inspiration-link">Read Tips →</a>
+          </div>
+        </div>
+
+        <div class="inspiration-card">
+          <div class="inspiration-image">
+            <img
+              src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              alt="Solo Travel">
+          </div>
+          <div class="inspiration-content">
+            <h3 class="inspiration-title">Solo Adventure Guide</h3>
+            <p class="inspiration-description">Everything you need to know to embark on your first solo adventure
+              safely.</p>
+            <a href="#" class="inspiration-link">Get Started →</a>
+          </div>
+        </div>
+        <div class="inspiration-card">
+          <div class="inspiration-image">
+            <img
+              src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              alt="Solo Travel">
+          </div>
+          <div class="inspiration-content">
+            <h3 class="inspiration-title">Adventure Travel Tips</h3>
+            <p class="inspiration-description">Learn how to stay safe and healthy while traveling.</p>
+            <a href="#" class="inspiration-link">Read More →</a>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Achievements Section -->
+    <div class="achievements-section">
+      <h2 class="section-title"><i class="fas fa-trophy"></i> Adventure Achievements</h2>
+      <div class="achievements-grid">
+        <div class="achievement-card">
+          <div class="achievement-icon">
+            <i class="fas fa-mountain"></i>
+          </div>
+          <h3 class="achievement-title">Mountain Explorer</h3>
+          <p class="achievement-description">Complete 5 mountain hiking adventures</p>
+        </div>
+
+        <div class="achievement-card">
+          <div class="achievement-icon">
+            <i class="fas fa-globe-americas"></i>
+          </div>
+          <h3 class="achievement-title">World Traveler</h3>
+          <p class="achievement-description">Visit at least 3 different continents</p>
+        </div>
+
+        <div class="achievement-card">
+          <div class="achievement-icon">
+            <i class="fas fa-water"></i>
+          </div>
+          <h3 class="achievement-title">Water Adventurer</h3>
+          <p class="achievement-description">Try 3 different water sports</p>
+        </div>
+
+        <div class="achievement-card">
+          <div class="achievement-icon">
+            <i class="fas fa-route"></i>
+          </div>
+          <h3 class="achievement-title">Trail Blazer</h3>
+          <p class="achievement-description">Complete 10 different hiking trails</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div class="modal" id="feedbackModal">
+      <div class="modal-content">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <h2 class="modal-title"><i class="fas fa-comment-dots"></i> Share Your Feedback</h2>
+
+        <div class="comment-form">
+          <textarea class="comment-input" placeholder="What do you think about this bucket list app?"></textarea>
+          <button class="comment-submit">Submit Feedback</button>
+        </div>
+
+        <div class="comments-section">
+          <h3>Recent Feedback</h3>
+          <div class="comments-list">
+            <div class="comment">
+              <div class="comment-header">
+                <span class="comment-author">AdventureSeeker22</span>
+                <span class="comment-date">2 days ago</span>
+              </div>
+              <p class="comment-text">Love this app! It's helped me organize my travel goals and actually accomplish
+                them. The achievement system is motivating!</p>
+            </div>
+
+            <div class="comment">
+              <div class="comment-header">
+                <span class="comment-author">Wanderlust99</span>
+                <span class="comment-date">1 week ago</span>
+              </div>
+              <p class="comment-text">Great tool for tracking adventures. Would love to see more social features to
+                share with friends.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Action Button -->
+  <div class="fab" id="fabBtn">
+    <i class="fas fa-plus"></i>
+  </div>
+
+  <!-- Feedback Button -->
+  <div class="fab" id="feedbackBtn" >
+    <i class="fas fa-comment"></i>
+  </div>
+
+  <!-- AI Assistant -->
+  <div class="assistant-container">
+    <div class="assistant-chat" id="assistantChat">
+      <div class="assistant-header">
+        <i class="fas fa-robot"></i>
+        <h3>Bucket List Assistant</h3>
+        <span class="assistant-close" id="assistantClose"><i class="fas fa-times"></i></span>
+      </div>
+      <div class="assistant-messages" id="assistantMessages">
+        <div class="assistant-message bot">
+          Hi there! I'm your Bucket List Assistant. How can I help you today?
+          <div class="quick-suggestions">
+            <div class="quick-suggestion" data-suggestion="Add a travel adventure">Add a travel adventure</div>
+            <div class="quick-suggestion" data-suggestion="Suggest ideas">Suggest ideas</div>
+            <div class="quick-suggestion" data-suggestion="Help with planning">Help with planning</div>
+          </div>
+        </div>
+      </div>
+      <div class="assistant-input">
+        <input type="text" id="assistantInput" placeholder="Type your message...">
+        <button id="assistantSend"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+    <button class="assistant-btn" id="assistantBtn">
+      <i class="fas fa-robot"></i>
     </button>
-  </nav>
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>🌍 Create Your Dream Bucket List</h1>
-      <p>Track your dreams, goals & adventures – one item at a time.</p>
-    </div>
+  </div>
 
-    <div class="categories">
-      <button class="category">🏔️ Adventure</button>
-      <button class="category">🎭 Culture</button>
-      <button class="category">🌿 Nature</button>
-      <button class="category">🎯 Personal Goals</button>
-      <button class="category">📸 Experiences</button>
-    </div>
-  </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // DOM Elements
+      const formContainer = document.getElementById('formContainer');
+      const addItemBtn = document.getElementById('addItemBtn');
+      const fabBtn = document.getElementById('fabBtn');
+      const feedbackBtn = document.getElementById('feedbackBtn');
+      const bucketListContainer = document.getElementById('bucketListContainer');
+      const filterCategory = document.getElementById('filterCategory');
+      const filterStatus = document.getElementById('filterStatus');
+      const sortBy = document.getElementById('sortBy');
+      const resetFiltersBtn = document.getElementById('resetFiltersBtn');
+      const totalCountEl = document.getElementById('totalCount');
+      const achievedCountEl = document.getElementById('achievedCount');
+      const activeCountEl = document.getElementById('activeCount');
+      const totalBudgetEl = document.getElementById('totalBudget');
+      const galleryLink = document.getElementById('galleryLink');
+      const inspirationLink = document.getElementById('inspirationLink');
+      const gallerySection = document.getElementById('gallerySection');
+      const inspirationSection = document.getElementById('inspirationSection');
+      const feedbackModal = document.getElementById('feedbackModal');
+      const closeModal = document.getElementById('closeModal');
 
-  <!-- Gallery Section -->
-  <section class="gallery">
-    <h2>📸 Bucket List Gallery</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="image/bucketlist/paraglide.jpg" alt="Pokhara Paragliding">
-        <p>Paragliding over Pokhara</p>
-      </div>
-      <div class="gallery-item">
-        <img src="image/bucketlist/annapuran.jpg" alt="Annapurna Trek">
-        <p>Annapurna Trekking Trail</p>
-      </div>
-      <div class="gallery-item">
-        <img src="image/bucketlist/everst.jpg" alt="Everest View">
-        <p>Everest View Point</p>
-      </div>
-      <div class="gallery-item">
-        <img src="image/bucketlist/lumbini.jpg" alt="Lumbini Monastery">
-        <p>Lumbini Monastery</p>
-      </div>
-      <div class="gallery-item">
-        <img src="image/bucketlist/chitwan-safari.jpg" alt="Chitwan Safari">
-        <p>Safari in Chitwan</p>
-      </div>
-      <div class="gallery-item">
-        <img src="image/bucketlist/mustnag.jpg" alt="Mustang Stargazing">
-        <p>Stargazing in Mustang</p>
-      </div>
-    </div>
-  </section>
+      // Form input elements
+      const itemTitle = document.getElementById('itemTitle');
+      const itemCategory = document.getElementById('itemCategory');
+      const itemLocation = document.getElementById('itemLocation');
+      const itemBudget = document.getElementById('itemBudget');
+      const itemDays = document.getElementById('itemDays');
+      const itemPriority = document.getElementById('itemPriority');
+      const itemNotes = document.getElementById('itemNotes');
 
-  <section class="section-form">
-    <div class="form-right">
-      <section class="chat-container">
-        <div class="chat-header">
-          <h2> <i class="fa-solid fa-robot fa-bounce"></i>Bucket List Assistant</h2>
-          <p>Keep track of your bucket list adventures. Simply add or remove items with ease.</p>
-        </div>
+      // AI Assistant Elements
+      const assistantBtn = document.getElementById('assistantBtn');
+      const assistantChat = document.getElementById('assistantChat');
+      const assistantClose = document.getElementById('assistantClose');
+      const assistantMessages = document.getElementById('assistantMessages');
+      const assistantInput = document.getElementById('assistantInput');
+      const assistantSend = document.getElementById('assistantSend');
+      const quickSuggestions = document.querySelectorAll('.quick-suggestion');
 
-        <div class="chat-box" id="chatBox"></div>
+      // State
+      let bucketListItems = JSON.parse(localStorage.getItem('bucketListItems')) || [];
+      let isFormVisible = false;
+      let isAssistantVisible = false;
 
-        <div class="chat-input-area">
-          <input type="text" id="chatInput" placeholder='Type "Add hiking" or "Remove hiking"' />
-          <button onclick="simulateReply()">Send</button>
-        </div>
-      </section>
-    </div>
+      // Initialize the app
+      init();
 
-    <div class="form-left">
-      <h2>📌 Plan Your Bucket List Goal</h2>
+      // Event Listeners
+      addItemBtn.addEventListener('click', addBucketListItem);
+      fabBtn.addEventListener('click', toggleFormVisibility);
+      feedbackBtn.addEventListener('click', () => feedbackModal.style.display = 'flex');
+      closeModal.addEventListener('click', () => feedbackModal.style.display = 'none');
+      filterCategory.addEventListener('change', filterAndRenderItems);
+      filterStatus.addEventListener('change', filterAndRenderItems);
+      sortBy.addEventListener('change', filterAndRenderItems);
+      resetFiltersBtn.addEventListener('click', resetFilters);
+      galleryLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        gallerySection.scrollIntoView({ behavior: 'smooth' });
+      });
+      inspirationLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        inspirationSection.scrollIntoView({ behavior: 'smooth' });
+      });
 
-      <form id="advancedForm" class="form-grid">
-        <input type="text" id="goalTitle" placeholder="Your Goal (e.g., Everest Trek)" required>
+      // AI Assistant Event Listeners
+      assistantBtn.addEventListener('click', toggleAssistant);
+      assistantClose.addEventListener('click', toggleAssistant);
+      assistantSend.addEventListener('click', sendAssistantMessage);
+      assistantInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendAssistantMessage();
+      });
 
-        <select id="destination" required>
-          <option value="">Select Destination</option>
-          <option value="Pokhara">Pokhara</option>
-          <option value="Everest Base Camp">Everest Base Camp</option>
-          <option value="Lumbini">Lumbini</option>
-          <option value="Mustang">Mustang</option>
-          <option value="Ilam">Ilam</option>
-        </select>
+      quickSuggestions.forEach(suggestion => {
+        suggestion.addEventListener('click', (e) => {
+          const text = e.target.getAttribute('data-suggestion');
+          assistantInput.value = text;
+          sendAssistantMessage();
+        });
+      });
 
-        <input type="date" id="targetDate" required>
+      // Close modal when clicking outside
+      window.addEventListener('click', (e) => {
+        if (e.target === feedbackModal) {
+          feedbackModal.style.display = 'none';
+        }
+      });
 
-        <input type="number" id="budget" placeholder="Budget in NPR" required>
-        <input type="text" id="travelCompanion" placeholder="Travel Companion (e.g., Friends, Family)" required>
+      // Functions
+      function init() {
+        renderBucketListItems();
+        updateStats();
 
-        <select id="category" required>
-          <option value="">Choose Category</option>
-          <option value="Adventure">Adventure</option>
-          <option value="Nature">Nature</option>
-          <option value="Cultural">Cultural</option>
-          <option value="Spiritual">Spiritual</option>
-        </select>
-        <input type="text" id="priority" placeholder="Priority (e.g., High, Medium, Low)" required>
+        // Add some sample data if empty
+        if (bucketListItems.length === 0) {
+          const sampleItems = [
+            {
+              id: '1',
+              title: 'Hike Machu Picchu',
+              category: 'Travel',
+              location: 'Peru',
+              budget: 2500,
+              days: 7,
+              priority: 'High',
+              notes: 'Need to train for altitude',
+              status: 'active',
+              createdAt: '2023-01-15T10:30:00Z'
+            },
+            {
+              id: '2',
+              title: 'Learn Scuba Diving',
+              category: 'Adventure',
+              location: 'Great Barrier Reef',
+              budget: 1500,
+              days: 5,
+              priority: 'Medium',
+              notes: 'Get certified first',
+              status: 'active',
+              createdAt: '2023-02-20T14:45:00Z'
+            },
+            {
+              id: '3',
+              title: 'Road Trip Across USA',
+              category: 'Travel',
+              location: 'United States',
+              budget: 5000,
+              days: 30,
+              priority: 'Urgent',
+              notes: 'Plan route and stops',
+              status: 'achieved',
+              createdAt: '2022-06-10T09:15:00Z'
+            }
+          ];
 
-        <textarea id="notes" placeholder="Any notes or plans..."></textarea>
+          bucketListItems = sampleItems;
+          saveToLocalStorage();
+          renderBucketListItems();
+          updateStats();
+        }
+      }
 
+      function toggleAssistant() {
+        isAssistantVisible = !isAssistantVisible;
+        if (isAssistantVisible) {
+          assistantChat.classList.add('active');
+          assistantBtn.innerHTML = '<i class="fas fa-times"></i>';
+        } else {
+          assistantChat.classList.remove('active');
+          assistantBtn.innerHTML = '<i class="fas fa-robot"></i>';
+        }
+      }
 
-        <button id="addToListBtn" type="submit">Add to My List</button>
+      function sendAssistantMessage() {
+        const message = assistantInput.value.trim();
+        if (!message) return;
 
+        // Add user message to chat
+        addMessageToChat(message, 'user');
+        assistantInput.value = '';
 
-      </form>
+        // Process the message
+        processAssistantMessage(message);
+      }
 
-      <ul id="bucketItemsList"></ul>
-    </div>
-  </section>
+      function addMessageToChat(message, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `assistant-message ${sender}`;
+        messageDiv.textContent = message;
 
+        if (sender === 'bot' && message.includes('Would you like me to add')) {
+          // Add quick action buttons for adding items
+          const quickActions = document.createElement('div');
+          quickActions.className = 'quick-suggestions';
 
+          const addBtn = document.createElement('div');
+          addBtn.className = 'quick-suggestion';
+          addBtn.textContent = 'Yes, add it!';
+          addBtn.onclick = () => confirmAddBucketListItem(message);
 
+          const editBtn = document.createElement('div');
+          editBtn.className = 'quick-suggestion';
+          editBtn.textContent = 'Edit first';
+          editBtn.onclick = () => editFromAssistant(message);
 
+          const cancelBtn = document.createElement('div');
+          cancelBtn.className = 'quick-suggestion';
+          cancelBtn.textContent = 'No thanks';
+          cancelBtn.onclick = () => addMessageToChat('No problem! Let me know if you need anything else.', 'bot');
 
-  <script src="script.js"></script>
+          quickActions.appendChild(addBtn);
+          quickActions.appendChild(editBtn);
+          quickActions.appendChild(cancelBtn);
+
+          messageDiv.appendChild(quickActions);
+        } else if (sender === 'bot' && message.includes('Here are some adventure ideas')) {
+          // Add quick action buttons for idea selection
+          const quickActions = document.createElement('div');
+          quickActions.className = 'quick-suggestions';
+
+          const ideas = [
+            'Hike the Inca Trail to Machu Picchu',
+            'Scuba dive in the Great Barrier Reef',
+            'Take a hot air balloon ride in Cappadocia',
+            'Go on an African safari',
+            'Learn to surf in Hawaii'
+          ];
+
+          ideas.forEach(idea => {
+            const ideaBtn = document.createElement('div');
+            ideaBtn.className = 'quick-suggestion';
+            ideaBtn.textContent = idea;
+            ideaBtn.onclick = () => {
+              addMessageToChat(idea, 'user');
+              setTimeout(() => {
+                processAssistantMessage(idea);
+              }, 500);
+            };
+            quickActions.appendChild(ideaBtn);
+          });
+
+          messageDiv.appendChild(quickActions);
+        }
+
+        assistantMessages.appendChild(messageDiv);
+        assistantMessages.scrollTop = assistantMessages.scrollHeight;
+      }
+
+      function processAssistantMessage(message) {
+        // Simulate typing indicator
+        const typingIndicator = document.createElement('div');
+        typingIndicator.className = 'assistant-message bot';
+        typingIndicator.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+        assistantMessages.appendChild(typingIndicator);
+        assistantMessages.scrollTop = assistantMessages.scrollHeight;
+
+        // Remove typing indicator after delay
+        setTimeout(() => {
+          assistantMessages.removeChild(typingIndicator);
+
+          // Process the message and generate response
+          let response = '';
+
+          if (message.toLowerCase().includes('add') || message.toLowerCase().includes('create')) {
+            // Extract details from the message
+            const titleMatch = message.match(/"(.*?)"/);
+            const title = titleMatch ? titleMatch[1] : message.replace(/add|create/i, '').trim();
+
+            response = `I can help you add "${title}" to your bucket list. Would you like me to add it with these details?
+            
+            Title: ${title}
+            Category: Travel
+            Priority: Medium
+            Status: Active
+            
+            Or would you like to edit any details first?`;
+          }
+          else if (message.toLowerCase().includes('suggest') || message.toLowerCase().includes('idea')) {
+            response = `Here are some popular adventure ideas you might like:
+            
+            1. Hike the Inca Trail to Machu Picchu
+            2. Scuba dive in the Great Barrier Reef
+            3. Take a hot air balloon ride in Cappadocia
+            4. Go on an African safari
+            5. Learn to surf in Hawaii
+            
+            Click on any that interest you to add them to your list!`;
+          }
+          else if (message.toLowerCase().includes('help') || message.toLowerCase().includes('plan')) {
+            response = `I can help you plan your adventures in several ways:
+            
+            1. Suggest destinations based on your interests
+            2. Estimate budgets for different types of trips
+            3. Recommend the best times to visit places
+            4. Help break down big adventures into smaller steps
+            
+            What specifically would you like help with?`;
+          }
+          else {
+            response = "I'm your bucket list assistant! I can help you add, organize, and plan your adventures. Try asking me to 'add an adventure' or 'suggest some ideas' to get started!";
+          }
+
+          addMessageToChat(response, 'bot');
+        }, 1500);
+      }
+
+      function confirmAddBucketListItem(message) {
+        // Extract title from the message
+        const titleMatch = message.match(/Title: (.*?)\n/);
+        const title = titleMatch ? titleMatch[1].trim() : 'New Adventure';
+
+        const newItem = {
+          id: Date.now().toString(),
+          title: title,
+          category: 'Travel',
+          location: '',
+          budget: 0,
+          days: 0,
+          priority: 'Medium',
+          notes: 'Added by Bucket List Assistant',
+          status: 'active',
+          createdAt: new Date().toISOString()
+        };
+
+        bucketListItems.unshift(newItem);
+        saveToLocalStorage();
+        renderBucketListItems();
+        updateStats();
+
+        addMessageToChat(`"${title}" has been added to your bucket list! You can edit the details anytime.`, 'bot');
+      }
+
+      function editFromAssistant(message) {
+        // Extract title from the message
+        const titleMatch = message.match(/Title: (.*?)\n/);
+        const title = titleMatch ? titleMatch[1].trim() : 'New Adventure';
+
+        // Fill the form with suggested data
+        itemTitle.value = title;
+        itemCategory.value = 'Travel';
+        itemPriority.value = 'Medium';
+
+        // Show the form
+        if (!isFormVisible) {
+          toggleFormVisibility();
+        }
+
+        // Focus on the title field
+        itemTitle.focus();
+
+        addMessageToChat('I\'ve pre-filled the form for you. Feel free to edit any details before submitting!', 'bot');
+      }
+
+      function toggleFormVisibility() {
+        isFormVisible = !isFormVisible;
+        if (isFormVisible) {
+          formContainer.classList.remove('hidden');
+          fabBtn.innerHTML = '<i class="fas fa-times"></i>';
+        } else {
+          formContainer.classList.add('hidden');
+          fabBtn.innerHTML = '<i class="fas fa-plus"></i>';
+        }
+      }
+
+      function addBucketListItem(e) {
+        e.preventDefault();
+
+        // Validate required fields
+        if (!itemTitle.value || !itemCategory.value) {
+          alert('Please fill in at least the title and category fields');
+          return;
+        }
+
+        // Parse budget correctly - remove commas and convert to number
+        let budgetValue = 0;
+        if (itemBudget.value) {
+          const numericValue = itemBudget.value.replace(/,/g, '');
+          budgetValue = parseFloat(numericValue) || 0;
+        }
+
+        const newItem = {
+          id: Date.now().toString(),
+          title: itemTitle.value,
+          category: itemCategory.value,
+          location: itemLocation.value,
+          budget: budgetValue,
+          days: itemDays.value ? parseInt(itemDays.value) : null,
+          priority: itemPriority.value || 'medium',
+          notes: itemNotes.value,
+          status: 'active',
+          createdAt: new Date().toISOString()
+        };
+
+        bucketListItems.unshift(newItem);
+        saveToLocalStorage();
+        renderBucketListItems();
+        updateStats();
+        resetForm();
+        toggleFormVisibility();
+      }
+
+      function resetForm() {
+        itemTitle.value = '';
+        itemCategory.value = '';
+        itemLocation.value = '';
+        itemBudget.value = '';
+        itemDays.value = '';
+        itemPriority.value = '';
+        itemNotes.value = '';
+      }
+
+      function renderBucketListItems(items = bucketListItems) {
+        if (items.length === 0) {
+          bucketListContainer.innerHTML = `
+            <div class="empty-state">
+              <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="Empty bucket list">
+              <h3>Your adventure bucket list is empty</h3>
+              <p>Start by adding your first adventure!</p>
+            </div>
+          `;
+          return;
+        }
+
+        bucketListContainer.innerHTML = items.map(item => `
+          <div class="bucket-item ${item.status === 'achieved' ? 'achieved' : ''}" data-id="${item.id}">
+            <div class="bucket-item-header">
+              <h3 class="bucket-item-title">${item.title}</h3>
+              <span class="bucket-item-category ${item.category}">${item.category}</span>
+            </div>
+            
+            <div class="bucket-item-details">
+              ${item.location ? `
+                <div class="bucket-item-detail">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>${item.location}</span>
+                </div>
+              ` : ''}
+              
+              ${item.budget ? `
+                <div class="bucket-item-detail">
+                  <i class="fas fa-wallet"></i>
+                    <span>$${(item.budget).toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        })}</span>
+                </div>
+              ` : ''}
+              
+              ${item.days ? `
+                <div class="bucket-item-detail">
+                  <i class="fas fa-calendar-day"></i>
+                  <span>${item.days} day${item.days !== 1 ? 's' : ''}</span>
+                </div>
+              ` : ''}
+              
+              <div class="bucket-item-detail">
+                <i class="fas fa-star"></i>
+                <span class="bucket-item-priority ${item.priority}">${item.priority}</span>
+              </div>
+              
+              ${item.notes ? `
+                <div class="bucket-item-notes">
+                  <p>${item.notes}</p>
+                </div>
+              ` : ''}
+            </div>
+            
+            <div class="bucket-item-footer">
+              <span class="bucket-item-date">${formatDate(item.createdAt)}</span>
+              <div class="bucket-item-actions">
+                <button class="action-btn complete" title="Mark as ${item.status === 'active' ? 'achieved' : 'active'}">
+                  <i class="fas fa-${item.status === 'active' ? 'check' : 'undo'}"></i>
+                </button>
+                <button class="action-btn edit" title="Edit">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-btn delete" title="Delete">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+            <button class = "btn-chat" onclick="openChat()">
+                  <i class="fas fa-comment"></i>
+                  Chat Now!
+            </button>
+          </div>
+        `).join('');
+
+        // Add event listeners to action buttons
+        document.querySelectorAll('.action-btn.complete').forEach(btn => {
+          btn.addEventListener('click', toggleItemStatus);
+        });
+
+        document.querySelectorAll('.action-btn.delete').forEach(btn => {
+          btn.addEventListener('click', deleteItem);
+        });
+
+        document.querySelectorAll('.action-btn.edit').forEach(btn => {
+          btn.addEventListener('click', editItem);
+        });
+      }
+
+      function toggleItemStatus(e) {
+        const itemId = e.target.closest('.bucket-item').dataset.id;
+        const itemIndex = bucketListItems.findIndex(item => item.id === itemId);
+
+        if (itemIndex !== -1) {
+          bucketListItems[itemIndex].status =
+            bucketListItems[itemIndex].status === 'active' ? 'achieved' : 'active';
+          saveToLocalStorage();
+          filterAndRenderItems();
+          updateStats();
+        }
+      }
+
+      function deleteItem(e) {
+        if (confirm('Are you sure you want to delete this item?')) {
+          const itemId = e.target.closest('.bucket-item').dataset.id;
+          bucketListItems = bucketListItems.filter(item => item.id !== itemId);
+          saveToLocalStorage();
+          filterAndRenderItems();
+          updateStats();
+        }
+      }
+
+      function editItem(e) {
+        const itemId = e.target.closest('.bucket-item').dataset.id;
+        const item = bucketListItems.find(item => item.id === itemId);
+
+        if (item) {
+          // Fill the form with item data
+          itemTitle.value = item.title;
+          itemCategory.value = item.category;
+          itemLocation.value = item.location || '';
+          itemBudget.value = item.budget ? item.budget.toLocaleString() : '';
+          itemDays.value = item.days || '';
+          itemPriority.value = item.priority;
+          itemNotes.value = item.notes || '';
+
+          // Remove the item from the list
+          bucketListItems = bucketListItems.filter(i => i.id !== itemId);
+
+          // Show the form
+          if (!isFormVisible) {
+            toggleFormVisibility();
+          }
+
+          // Focus on the title field
+          itemTitle.focus();
+
+          // Update the UI
+          saveToLocalStorage();
+          filterAndRenderItems();
+          updateStats();
+        }
+      }
+
+      function filterAndRenderItems() {
+        let filteredItems = [...bucketListItems];
+
+        // Filter by category
+        if (filterCategory.value) {
+          filteredItems = filteredItems.filter(item => item.category === filterCategory.value);
+        }
+
+        // Filter by status
+        if (filterStatus.value) {
+          filteredItems = filteredItems.filter(item => item.status === filterStatus.value);
+        }
+
+        // Sort items
+        switch (sortBy.value) {
+          case 'priority':
+            const priorityOrder = { 'Urgent': 4, 'High': 3, 'Medium': 2, 'Low': 1 };
+            filteredItems.sort((a, b) => priorityOrder[b.priority] - priorityOrder[a.priority]);
+            break;
+          case 'budget':
+            filteredItems.sort((a, b) => (b.budget || 0) - (a.budget || 0));
+            break;
+          default: // dateAdded
+            filteredItems.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        }
+
+        renderBucketListItems(filteredItems);
+      }
+
+      function resetFilters() {
+        filterCategory.value = '';
+        filterStatus.value = '';
+        sortBy.value = 'dateAdded';
+        filterAndRenderItems();
+      }
+
+      function updateStats() {
+        totalCountEl.textContent = bucketListItems.length;
+
+        const achievedCount = bucketListItems.filter(item => item.status === 'achieved').length;
+        achievedCountEl.textContent = achievedCount;
+
+        const activeCount = bucketListItems.length - achievedCount;
+        activeCountEl.textContent = activeCount;
+
+        const totalBudget = bucketListItems.reduce((sum, item) => sum + (item.budget || 0), 0);
+        totalBudgetEl.textContent = `$${totalBudget.toLocaleString()}`;
+      }
+
+      function saveToLocalStorage() {
+        localStorage.setItem('bucketListItems', JSON.stringify(bucketListItems));
+      }
+
+      function formatDate(dateString) {
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+      }
+    });
+
+    // Format budget input as user types
+    itemBudget.addEventListener('input', function (e) {
+      // Remove non-numeric characters
+      let value = this.value.replace(/[^0-9]/g, '');
+
+      // Add commas as thousands separators
+      if (value.length > 3) {
+        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+
+      this.value = value;
+    });
+
+    // Clear all bucket list data from localStorage
+    localStorage.removeItem('bucketListItems');
+
+    // Optional: Also clear the in-memory array
+    bucketListItems = [];
+
+    // Update the UI to reflect the empty state
+    renderBucketListItems();
+    updateStats();
+
+    function openChat() {
+      window.location.href = 'chat.html'
+    }
+  </script>
 </body>
 
 </html>
