@@ -11,17 +11,23 @@
 </head>
 
 <body>
-  <div class="container">
-    <header>
+
+  <header>
+    <nav>
+      <a href="#" class="inspiration-link" id="inspirationLink"><i class="fas fa-lightbulb"></i> Get Inspired</a>
+    </nav>
+    <div class="head">
       <h1>YatraHub Bucket List</h1>
       <p class="subtitle">Track your dreams and make them happen</p>
-      <nav>
-        <a href="chat.html" class="chat-link"><i class="fas fa-comments"></i> Adventure Chat</a>
-        <a href="#" class="gallery-link" id="galleryLink"><i class="fas fa-images"></i> Adventure Gallery</a>
-        <a href="#" class="inspiration-link" id="inspirationLink"><i class="fas fa-lightbulb"></i> Get Inspired</a>
-      </nav>
-    </header>
+    </div>
 
+    <nav>
+      <a href="#" class="gallery-link" id="galleryLink"><i class="fas fa-images"></i> Adventure Gallery</a>
+    </nav>
+  </header>
+
+
+  <div class="container">
     <div class="main-content">
       <div class="form-container hidden" id="formContainer">
         <div class="form-group">
@@ -251,8 +257,8 @@
         <div class="inspiration-card">
           <div class="inspiration-image">
             <img
-              src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-              alt="Solo Travel">
+              src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              alt="Adventure Travel Tips">
           </div>
           <div class="inspiration-content">
             <h3 class="inspiration-title">Adventure Travel Tips</h3>
@@ -346,7 +352,7 @@
   </div>
 
   <!-- Feedback Button -->
-  <div class="fab" id="feedbackBtn" >
+  <div class="fab" id="feedbackBtn">
     <i class="fas fa-comment"></i>
   </div>
 
@@ -585,6 +591,7 @@
             'Take a hot air balloon ride in Cappadocia',
             'Go on an African safari',
             'Learn to surf in Hawaii'
+
           ];
 
           ideas.forEach(idea => {
@@ -800,7 +807,7 @@
               ${item.budget ? `
                 <div class="bucket-item-detail">
                   <i class="fas fa-wallet"></i>
-                    <span>$${(item.budget).toLocaleString('en-US', {
+                    <span>Rs ${(item.budget).toLocaleString('en-US', {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2
         })}</span>
@@ -962,7 +969,7 @@
         activeCountEl.textContent = activeCount;
 
         const totalBudget = bucketListItems.reduce((sum, item) => sum + (item.budget || 0), 0);
-        totalBudgetEl.textContent = `$${totalBudget.toLocaleString()}`;
+        totalBudgetEl.textContent = `Rs ${totalBudget.toLocaleString()}`;
       }
 
       function saveToLocalStorage() {

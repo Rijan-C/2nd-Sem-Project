@@ -34,19 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Change slide every 4 seconds
     setInterval(nextSlide, 4000);
 
-    // Quick action button animations
-    const actionButtons = document.querySelectorAll('.action-btn');
-    actionButtons.forEach(button => {
-        button.addEventListener('mouseenter', () => {
-            button.style.transform = 'translateY(-3px)';
-            button.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
-        });
-
-        button.addEventListener('mouseleave', () => {
-            button.style.transform = 'translateY(0)';
-            button.style.boxShadow = 'none';
-        });
-    });
+ 
 
 
 });
